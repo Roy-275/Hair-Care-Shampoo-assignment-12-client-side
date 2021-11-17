@@ -4,6 +4,7 @@ import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import NotFound from './Pages/NotFound/NotFound/NotFound';
 import Explore from './Pages/Explore/Explore/Explore';
+import Register from './Pages/Login/Register/Register';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
 
         <Route path="/login">
           <Login></Login>
+        </Route>
+
+        <Route path="/register">
+          <Register></Register>
         </Route>
 
         <Route path="/explore">
