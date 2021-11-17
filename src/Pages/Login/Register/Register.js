@@ -49,7 +49,7 @@ const Register = () => {
                         autoComplete="current-password"
                     /> <br />
 
-                    <Button variant="contained">Login</Button>
+                    <Button type="submit" variant="contained">Register</Button>
 
                 </form>
             </Box>
