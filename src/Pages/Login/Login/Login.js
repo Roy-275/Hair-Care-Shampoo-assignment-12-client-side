@@ -1,13 +1,28 @@
 import { Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
+    const [loginData, setLoginData] = useState({});
+    const { loginUser } = useAuth()
+
+    const handleOnBlur = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
+    }
+
+    const handleLoginSubmit = e => {
+        loginUser(loginData.email, loginData.password)
+        e.preventDefault();
+    }
     return (
         <div style={{ textAlign: 'center' }}>
             <Header></Header>
@@ -15,38 +30,32 @@ const Login = () => {
                 Please Login
             </Typography>
 
-            <Box
-                component="form"
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <form >
-                    <TextField
-                        sx={{
-                            my: '20px'
-                        }}
-                        id="outlined-password-input"
-                        label="Your Email"
-                        type="text"
-                    /> <br />
+            <form onSubmit={handleLoginSubmit}>
+                <TextField
+                    sx={{
+                        my: '10px',
+                        width: '50%'
+                    }}
+                    onBlur={handleOnBlur}
+                    name="email"
+                    label="Your Email"
+                    type="text"
+                /> <br />
 
-                    <TextField
-                        sx={{
-                            my: '20px'
-                        }}
-                        id="outlined-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                    /> <br />
+                <TextField
+                    sx={{
+                        my: '10px',
+                        width: '50%'
+                    }}
+                    onBlur={handleOnBlur}
+                    name="password"
+                    label="Password"
+                    type="password"
+                /> <br />
 
-                    <Button variant="contained">Login</Button>
+                <Button type="submit" variant="contained">Login</Button>
 
-                </form>
-            </Box>
+            </form>
             <Typography variant="h6" sx={{ color: 'purple', my: '10px', fontWeight: 400 }} gutterBottom component="div">
                 Not a user? <NavLink to="/register">Register Now</NavLink>
             </Typography>

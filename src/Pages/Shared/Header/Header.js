@@ -6,8 +6,11 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import { Button } from '@mui/material';
 
 const Header = () => {
+    const { user, logout } = useAuth();
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -42,15 +45,26 @@ const Header = () => {
                         </Typography>
                     </NavLink>
 
-                    <NavLink style={{
-                        marginRight: '15px',
-                        textDecoration: 'none',
-                        color: 'white'
-                    }} to="/login">
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Login
-                        </Typography>
-                    </NavLink>
+                    {
+                        user?.email ?
+                            <div>
+                                <Button onClick={logout} variant="contained">
+                                    Logout
+                                </Button> &nbsp;
+                                {user.email}
+                            </div>
+                            :
+                            <NavLink style={{
+                                marginRight: '15px',
+                                textDecoration: 'none',
+                                color: 'white'
+                            }} to="/login">
+                                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    Login
+                                </Typography>
+                            </NavLink>
+                    }
+
                 </Toolbar>
             </AppBar>
         </Box>
