@@ -1,15 +1,13 @@
-import { Typography } from '@mui/material';
 import React from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
+import Banner from '../Banner/Banner';
 
 const Home = () => {
     return (
         <div>
             <Header></Header>
-            <Typography variant="h4">
-                This is home component
-            </Typography>
+            <Banner></Banner>
             <Footer></Footer>
         </div>
     );
