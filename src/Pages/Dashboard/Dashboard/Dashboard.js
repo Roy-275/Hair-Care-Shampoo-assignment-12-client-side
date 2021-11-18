@@ -24,6 +24,10 @@ import MyOrders from '../MyOrders/MyOrders';
 import Pay from '../Pay/Pay';
 import Review from '../Review/Review';
 import DashboardHome from '../DashboardHome/DashboardHome';
+import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
+import AddProduct from '../AddProduct/AddProduct';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import ManageProducts from '../ManageProducts/ManageProducts';
 
 const drawerWidth = 240;
 
@@ -64,6 +68,23 @@ function Dashboard(props) {
 
             <List>
                 {['My Orders', 'Review', 'Pay'].map((text) => (
+                    <ListItem button key={text}>
+                        <NavLink style={{
+                            marginRight: '15px',
+                            textDecoration: 'none',
+                            color: 'blue',
+                            fontWeight: 'bold'
+                        }} to={`${url}/${text.toLowerCase()}`}>
+                            <Typography variant="h6" component="span">
+                                <ListItemText primary={text} />
+                            </Typography>
+                        </NavLink>
+                    </ListItem>
+                ))}
+            </List>
+
+            <List>
+                {['Manage All Orders', 'Add A Product', 'Make Admin', 'Manage Products'].map((text) => (
                     <ListItem button key={text}>
                         <NavLink style={{
                             marginRight: '15px',
@@ -152,6 +173,7 @@ function Dashboard(props) {
                         <DashboardHome></DashboardHome>
                     </Route>
 
+                    {/* user routes */}
                     <Route path={`${path}/pay`}>
                         <Pay></Pay>
                     </Route>
@@ -162,6 +184,23 @@ function Dashboard(props) {
 
                     <Route path={`${path}/review`}>
                         <Review></Review>
+                    </Route>
+
+                    {/* admin routes */}
+                    <Route path={`${path}/manage all orders`}>
+                        <ManageAllOrders></ManageAllOrders>
+                    </Route>
+
+                    <Route path={`${path}/add a product`}>
+                        <AddProduct></AddProduct>
+                    </Route>
+
+                    <Route path={`${path}/make admin`}>
+                        <MakeAdmin></MakeAdmin>
+                    </Route>
+
+                    <Route path={`${path}/manage products`}>
+                        <ManageProducts></ManageProducts>
                     </Route>
                 </Switch>
                 <Footer></Footer>
