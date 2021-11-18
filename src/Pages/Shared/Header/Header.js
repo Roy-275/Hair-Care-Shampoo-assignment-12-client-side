@@ -31,7 +31,7 @@ const Header = () => {
                             textDecoration: 'none',
                             color: 'white'
                         }} to="/home">
-                            <Typography variant="h6" component="a">
+                            <Typography variant="h6" component="span">
                                 Home
                         </Typography>
                         </NavLink>
@@ -41,7 +41,7 @@ const Header = () => {
                             textDecoration: 'none',
                             color: 'white'
                         }} to="/explore">
-                            <Typography variant="h6" component="a">
+                            <Typography variant="h6" component="span">
                                 Our Products
                         </Typography>
                         </NavLink>
@@ -55,14 +55,14 @@ const Header = () => {
                                     textDecoration: 'none',
                                     color: 'white'
                                 }} to="/dashboard">
-                                    <Typography variant="h6" component="a">
+                                    <Typography variant="h6" component="span">
                                         Dashboard
                                 </Typography>
                                 </NavLink>
                                 <Button onClick={logout} variant="contained">
                                     Logout
                             </Button> &nbsp;
-                            <Typography variant="h6" component="a">
+                            <Typography variant="h6" component="span">
                                     {user.displayName}
                                 </Typography>
 
@@ -74,7 +74,7 @@ const Header = () => {
                                     textDecoration: 'none',
                                     color: 'white'
                                 }} to="/login">
-                                    <Typography variant="h6" component="a">
+                                    <Typography variant="h6" component="span">
                                         Login
                                 </Typography>
                                 </NavLink>

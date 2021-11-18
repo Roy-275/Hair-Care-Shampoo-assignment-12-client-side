@@ -4,12 +4,14 @@ import Button from '@mui/material/Button';
 import React, { useState } from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({});
-    const { loginUser } = useAuth()
+    const { loginUser } = useAuth();
+    const history = useHistory();
+    const location = useLocation();
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -20,7 +22,7 @@ const Login = () => {
     }
 
     const handleLoginSubmit = e => {
-        loginUser(loginData.email, loginData.password)
+        loginUser(loginData.email, loginData.password, location, history)
         e.preventDefault();
     }
     return (
