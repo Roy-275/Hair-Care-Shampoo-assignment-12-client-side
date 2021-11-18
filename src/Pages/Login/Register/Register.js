@@ -3,12 +3,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import React, { useState } from 'react';
 import Header from '../../Shared/Header/Header';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Footer from '../../Shared/Footer/Footer';
 import useAuth from '../../../hooks/useAuth';
 
 const Register = () => {
     const [loginData, setLoginData] = useState({});
+    const history = useHistory();
 
     const { registerUser, isLoading } = useAuth();
 
@@ -22,7 +23,7 @@ const Register = () => {
 
     const handleRegisterSubmit = e => {
 
-        registerUser(loginData.email, loginData.password);
+        registerUser(loginData.email, loginData.password, loginData.name, history);
         e.preventDefault();
     }
 

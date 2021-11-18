@@ -12,57 +12,73 @@ import { Button } from '@mui/material';
 const Header = () => {
     const { user, logout } = useAuth();
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    <Box>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
 
-                    <NavLink style={{
-                        marginRight: '15px',
-                        textDecoration: 'none',
-                        color: 'white'
-                    }} to="/home">
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Home
+                        <NavLink style={{
+                            marginRight: '15px',
+                            textDecoration: 'none',
+                            color: 'white'
+                        }} to="/home">
+                            <Typography variant="h6" component="a">
+                                Home
                         </Typography>
-                    </NavLink>
+                        </NavLink>
 
-                    <NavLink style={{
-                        marginRight: '15px',
-                        textDecoration: 'none',
-                        color: 'white'
-                    }} to="/explore">
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Explore
+                        <NavLink style={{
+                            marginRight: '15px',
+                            textDecoration: 'none',
+                            color: 'white'
+                        }} to="/explore">
+                            <Typography variant="h6" component="a">
+                                Our Products
                         </Typography>
-                    </NavLink>
+                        </NavLink>
+                    </Box>
 
                     {
                         user?.email ?
-                            <div>
+                            <Box>
+                                <NavLink style={{
+                                    marginRight: '15px',
+                                    textDecoration: 'none',
+                                    color: 'white'
+                                }} to="/dashboard">
+                                    <Typography variant="h6" component="a">
+                                        Dashboard
+                                </Typography>
+                                </NavLink>
                                 <Button onClick={logout} variant="contained">
                                     Logout
-                                </Button> &nbsp;
-                                {user.email}
-                            </div>
-                            :
-                            <NavLink style={{
-                                marginRight: '15px',
-                                textDecoration: 'none',
-                                color: 'white'
-                            }} to="/login">
-                                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                    Login
+                            </Button> &nbsp;
+                            <Typography variant="h6" component="a">
+                                    {user.displayName}
                                 </Typography>
-                            </NavLink>
+
+                            </Box>
+                            :
+                            <Box>
+                                <NavLink style={{
+                                    marginRight: '15px',
+                                    textDecoration: 'none',
+                                    color: 'white'
+                                }} to="/login">
+                                    <Typography variant="h6" component="a">
+                                        Login
+                                </Typography>
+                                </NavLink>
+                            </Box>
                     }
 
                 </Toolbar>
