@@ -80,7 +80,7 @@ const Purchase = () => {
                                         </Typography>
                                         <Typography variant="h6" color="text.main">
                                             Price: {product.price}$
-                        </Typography>
+                                        </Typography>
                                     </CardContent>
                                 </CardActionArea>
                             </Card>
