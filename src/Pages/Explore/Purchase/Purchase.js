@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, CircularProgress, Grid, TextField, Typography } from '@mui/material';
+import { Alert, Button, Card, CardActionArea, CardContent, CircularProgress, Grid, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
@@ -8,6 +8,8 @@ import Header from '../../Shared/Header/Header';
 const Purchase = () => {
     const [product, setProduct] = useState();
     const [userData, setUserData] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [orderSuccess, setOrderSuccess] = useState(false);
     const { productId } = useParams();
 
     const { user, isLoading } = useAuth();
@@ -21,7 +23,31 @@ const Purchase = () => {
     }
 
     const handlePurchase = e => {
+        setLoading(true);
 
+        // collect data
+        const order = {
+            ...userData
+        }
+
+        // send to the server
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    setOrderSuccess(true);
+                }
+            })
+            .finally(() => setLoading(false));
+
+
+        e.preventDefault();
     }
 
 
@@ -66,6 +92,9 @@ const Purchase = () => {
                         <Typography variant="h4" sx={{ color: '#146422', my: '10px', fontWeight: 600 }} gutterBottom component="div">
                             Confirm Your Order
                         </Typography>
+
+                        {orderSuccess && <Alert severity="success">Your order has been placed</Alert>}
+
                         {!isLoading && <form onSubmit={handlePurchase}>
                             <TextField
                                 sx={{
@@ -119,14 +148,26 @@ const Purchase = () => {
                                 onBlur={handleOnBlur}
                                 multiline
                                 rows={2}
-                                name="description"
+                                name="address"
                                 label="Your Address"
+                                type="text"
+                            /> <br />
+
+                            <TextField
+                                sx={{
+                                    my: '10px',
+                                    width: { xs: '90%', sm: '70%', md: '50%' }
+                                }}
+                                name="status"
+                                onBlur={handleOnBlur}
+                                value="pending"
                                 type="text"
                             /> <br />
 
                             <Button type="submit" variant="contained">Confirm Order</Button>
 
                         </form>}
+                        {isLoading && <CircularProgress />}
                     </Grid>
                 </Grid>
             }
