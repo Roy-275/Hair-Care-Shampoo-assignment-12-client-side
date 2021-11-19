@@ -31,6 +31,9 @@ const ManageProducts = () => {
 
     return (
         <div>
+            <Typography variant="h4" sx={{ color: '#5f5df5', my: '10px', fontWeight: 600 }} gutterBottom component="div">
+                Manage Products Here
+            </Typography>
             {
                 products.map(product => <div style={{ background: '#F9E79F', padding: '15px' }}>
                     <Typography sx={{ fontWeight: 'bold', color: 'purple' }} gutterBottom variant="h5" component="div">

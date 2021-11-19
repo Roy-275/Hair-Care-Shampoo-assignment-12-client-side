@@ -30,6 +30,10 @@ const ManageAllOrders = () => {
     };
     return (
         <div>
+            <Typography variant="h4" sx={{ color: '#5f5df5', my: '10px', fontWeight: 600 }} gutterBottom component="div">
+                Manage All Orders
+            </Typography>
+
             {
                 orders.map(order => <div style={{ background: '#F9E79F', padding: '15px' }}>
                     <Typography sx={{ fontWeight: 'bold', color: 'purple' }} gutterBottom variant="h5" component="div">
