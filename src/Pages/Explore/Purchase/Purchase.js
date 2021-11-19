@@ -12,7 +12,7 @@ const Purchase = () => {
     const [orderSuccess, setOrderSuccess] = useState(false);
     const { productId } = useParams();
 
-    const { user, isLoading } = useAuth();
+    const { user } = useAuth();
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -95,7 +95,7 @@ const Purchase = () => {
 
                         {orderSuccess && <Alert severity="success">Your order has been placed</Alert>}
 
-                        {!isLoading && <form onSubmit={handlePurchase}>
+                        {!loading && <form onSubmit={handlePurchase}>
                             <TextField
                                 sx={{
                                     my: '10px',
@@ -167,7 +167,7 @@ const Purchase = () => {
                             <Button type="submit" variant="contained">Confirm Order</Button>
 
                         </form>}
-                        {isLoading && <CircularProgress />}
+                        {loading && <CircularProgress />}
                     </Grid>
                 </Grid>
             }
