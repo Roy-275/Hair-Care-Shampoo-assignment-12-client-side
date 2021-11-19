@@ -23,7 +23,7 @@ const Review = () => {
         }
 
         // send to the server
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://salty-castle-47258.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -3,18 +3,18 @@ import React, { useEffect, useState } from 'react';
 
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
-    const url = `http://localhost:5000/allorders`
+    const url = `https://salty-castle-47258.herokuapp.com/allorders`
 
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
             .then(data => setOrders(data))
-    }, [])
+    }, [url])
 
     const handleCancel = id => {
         const proceed = window.confirm('Are You Sure, You want to cancel order?');
         if (proceed) {
-            const singleOrderUrl = `http://localhost:5000/allorders/${id}`;
+            const singleOrderUrl = `https://salty-castle-47258.herokuapp.com/allorders/${id}`;
             fetch(singleOrderUrl, {
                 method: 'DELETE'
             })
@@ -35,7 +35,7 @@ const ManageAllOrders = () => {
             </Typography>
 
             {
-                orders.map(order => <div style={{ background: '#F9E79F', padding: '15px' }}>
+                orders.map(order => <div key={order._id} style={{ background: '#F9E79F', padding: '15px' }}>
                     <Typography sx={{ fontWeight: 'bold', color: 'purple' }} gutterBottom variant="h5" component="div">
                         {order.productName} <Button onClick={() => handleCancel(order._id)} variant="contained" sx={{ background: 'red', color: 'white', borderRadius: '5px' }}>Cancel</Button> &nbsp;
                         <Button onClick={() => handleCancel(order._id)} variant="contained" sx={{ color: 'white', borderRadius: '5px' }}>Update</Button>

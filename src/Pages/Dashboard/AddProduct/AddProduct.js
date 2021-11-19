@@ -23,7 +23,7 @@ const AddProduct = () => {
         }
 
         // send to the server
-        fetch('http://localhost:5000/products', {
+        fetch('https://salty-castle-47258.herokuapp.com/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

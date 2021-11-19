@@ -31,7 +31,7 @@ const Purchase = () => {
         }
 
         // send to the server
-        fetch('http://localhost:5000/orders', {
+        fetch('https://salty-castle-47258.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -51,7 +51,7 @@ const Purchase = () => {
     }
 
 
-    const url = `http://localhost:5000/products/${productId}`
+    const url = `https://salty-castle-47258.herokuapp.com/products/${productId}`
 
     useEffect(() => {
         fetch(url)

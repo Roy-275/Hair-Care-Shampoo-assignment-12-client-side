@@ -13,7 +13,7 @@ const MakeAdmin = () => {
     const handleAdminSubmit = e => {
         setIsLoading(true);
         const user = { email }
-        fetch('http://localhost:5000/users', {
+        fetch('https://salty-castle-47258.herokuapp.com/users', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -22,7 +22,7 @@ const MakeAdmin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.insertedId) {
+                if (data.modifiedCount > 0) {
                     setAddSuccess(true);
                 }
             })
