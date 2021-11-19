@@ -3,11 +3,11 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Product from '../../Shared/Product/Product';
 
-const BestProducts = () => {
+const AllProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('http://localhost:5000/allproducts')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
@@ -27,4 +27,4 @@ const BestProducts = () => {
     );
 };
 
-export default BestProducts;
+export default AllProducts;

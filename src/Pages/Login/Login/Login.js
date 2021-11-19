@@ -36,18 +36,18 @@ const Login = () => {
                 <TextField
                     sx={{
                         my: '10px',
-                        width: '50%'
+                        width: { xs: '90%', sm: '70%', md: '50%' }
                     }}
                     onBlur={handleOnBlur}
                     name="email"
                     label="Your Email"
-                    type="text"
+                    type="email"
                 /> <br />
 
                 <TextField
                     sx={{
                         my: '10px',
-                        width: '50%'
+                        width: { xs: '90%', sm: '70%', md: '50%' }
                     }}
                     onBlur={handleOnBlur}
                     name="password"

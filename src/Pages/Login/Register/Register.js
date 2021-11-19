@@ -38,7 +38,7 @@ const Register = () => {
                 <TextField
                     sx={{
                         my: '10px',
-                        width: '50%'
+                        width: { xs: '90%', sm: '70%', md: '50%' }
                     }}
                     name="name"
                     onBlur={handleOnBlur}
@@ -49,7 +49,7 @@ const Register = () => {
                 <TextField
                     sx={{
                         my: '10px',
-                        width: '50%'
+                        width: { xs: '90%', sm: '70%', md: '50%' }
                     }}
                     name="email"
                     onBlur={handleOnBlur}
@@ -60,7 +60,7 @@ const Register = () => {
                 <TextField
                     sx={{
                         my: '10px',
-                        width: '50%'
+                        width: { xs: '90%', sm: '70%', md: '50%' }
                     }}
                     name="password"
                     onBlur={handleOnBlur}

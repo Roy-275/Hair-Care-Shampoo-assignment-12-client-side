@@ -1,13 +1,14 @@
 import React from 'react';
-import BestProducts from '../../Home/BestProducts/BestProducts';
+import AllProducts from '../../Home/BestProducts/AllProducts';
 import Footer from '../../Shared/Footer/Footer';
 import Header from '../../Shared/Header/Header';
 
 const Explore = () => {
+
     return (
         <div>
             <Header></Header>
-            <BestProducts></BestProducts>
+            <AllProducts></AllProducts>
             <Footer></Footer>
         </div>
     );
