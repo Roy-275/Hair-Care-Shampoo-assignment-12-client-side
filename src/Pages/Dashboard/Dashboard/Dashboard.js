@@ -28,11 +28,12 @@ import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
 import AddProduct from '../AddProduct/AddProduct';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageProducts from '../ManageProducts/ManageProducts';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 
 const drawerWidth = 240;
 
 function Dashboard(props) {
-    const { user, logout } = useAuth();
+    const { user, logout, admin } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -66,39 +67,43 @@ function Dashboard(props) {
                         </Typography>
             </NavLink>
 
-            <List>
-                {['My Orders', 'Review', 'Pay'].map((text) => (
-                    <ListItem button key={text}>
-                        <NavLink style={{
-                            marginRight: '15px',
-                            textDecoration: 'none',
-                            color: 'blue',
-                            fontWeight: 'bold'
-                        }} to={`${url}/${text.toLowerCase()}`}>
-                            <Typography variant="h6" component="span">
-                                <ListItemText primary={text} />
-                            </Typography>
-                        </NavLink>
-                    </ListItem>
-                ))}
-            </List>
+            {
+                !admin && <List>
+                    {['My Orders', 'Review', 'Pay'].map((text) => (
+                        <ListItem button key={text}>
+                            <NavLink style={{
+                                marginRight: '15px',
+                                textDecoration: 'none',
+                                color: 'blue',
+                                fontWeight: 'bold'
+                            }} to={`${url}/${text.toLowerCase()}`}>
+                                <Typography variant="h6" component="span">
+                                    <ListItemText primary={text} />
+                                </Typography>
+                            </NavLink>
+                        </ListItem>
+                    ))}
+                </List>
+            }
 
-            <List>
-                {['Manage All Orders', 'Add A Product', 'Make Admin', 'Manage Products'].map((text) => (
-                    <ListItem button key={text}>
-                        <NavLink style={{
-                            marginRight: '15px',
-                            textDecoration: 'none',
-                            color: 'blue',
-                            fontWeight: 'bold'
-                        }} to={`${url}/${text.toLowerCase()}`}>
-                            <Typography variant="h6" component="span">
-                                <ListItemText primary={text} />
-                            </Typography>
-                        </NavLink>
-                    </ListItem>
-                ))}
-            </List>
+            {
+                admin && <List>
+                    {['Manage All Orders', 'Add A Product', 'Make Admin', 'Manage Products'].map((text) => (
+                        <ListItem button key={text}>
+                            <NavLink style={{
+                                marginRight: '15px',
+                                textDecoration: 'none',
+                                color: 'blue',
+                                fontWeight: 'bold'
+                            }} to={`${url}/${text.toLowerCase()}`}>
+                                <Typography variant="h6" component="span">
+                                    <ListItemText primary={text} />
+                                </Typography>
+                            </NavLink>
+                        </ListItem>
+                    ))}
+                </List>
+            }
         </div>
     );
 
@@ -187,21 +192,21 @@ function Dashboard(props) {
                     </Route>
 
                     {/* admin routes */}
-                    <Route path={`${path}/manage all orders`}>
+                    <AdminRoute path={`${path}/manage all orders`}>
                         <ManageAllOrders></ManageAllOrders>
-                    </Route>
+                    </AdminRoute>
 
-                    <Route path={`${path}/add a product`}>
+                    <AdminRoute path={`${path}/add a product`}>
                         <AddProduct></AddProduct>
-                    </Route>
+                    </AdminRoute>
 
-                    <Route path={`${path}/make admin`}>
+                    <AdminRoute path={`${path}/make admin`}>
                         <MakeAdmin></MakeAdmin>
-                    </Route>
+                    </AdminRoute>
 
-                    <Route path={`${path}/manage products`}>
+                    <AdminRoute path={`${path}/manage products`}>
                         <ManageProducts></ManageProducts>
-                    </Route>
+                    </AdminRoute>
                 </Switch>
                 <Footer></Footer>
             </Box>
